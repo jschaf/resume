@@ -1,0 +1,52 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{baselinegrid}[2017/07/02 Baseline Grid]
+
+\RequirePackage{tikz}
+\RequirePackage{tikzpagenodes} % Adds nodes around page boxes (e.g. body)
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{backgrounds}
+
+% Terminates option processing.
+\ProcessOptions\relax
+
+
+% Normal Latex code.
+\newlength{\baselinegrid}
+\setlength{\baselinegrid}{8pt}
+\def\gridcolumns{6}
+
+\newlength{\gridgutterwidth}
+\setlength{\gridgutterwidth}{8pt}
+\newlength{\gridcolumnwidth}
+\pgfmathsetlength{\gridcolumnwidth}{(\textwidth-(\gridcolumns-1)*\gridgutterwidth)/\gridcolumns}
+\newcommand{\showbaselinegrid}{%
+  \begin{tikzpicture}
+    [
+    remember picture, overlay,
+    every node/.style={inner sep=0pt,outer sep=0pt},
+    column line/.style={line width=1.4pt,color=red!30},
+    base line/.style={line width=0.4pt,color=blue!30},
+    ]
+    \coordinate (column line) at (\gridcolumnwidth,0);
+    \pgfmathsetmacro\innergridcolumns{\gridcolumns-1}
+    \foreach \i in {1,...,\innergridcolumns} {
+      \draw[column line]
+      let \n{j}={max(\i-1,0)} in
+      ($(current page text area.north west) + \i*(\gridcolumnwidth, 0) + \n{j}*(\gridgutterwidth, 0)$)
+      -- ++(0,-\textheight) ++ (\gridgutterwidth, 0) -- +(0, \textheight);
+    }
+    \draw [column line] (current page text area.north west) -- +(0, -\textheight);
+    \draw [column line] (current page text area.north east) -- +(0, -\textheight);
+
+
+    \pgfmathsetmacro\numbaselines{round(\textheight/\baselinegrid)}
+    \foreach \i in {0,...,\numbaselines} {
+      \draw[base line] ($(current page text area.north west) + \i*(0,-\baselinegrid)$)
+      -- +(\textwidth,0);
+    }
+  \end{tikzpicture}%
+}
+
+
+\endinput

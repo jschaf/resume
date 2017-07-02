@@ -1,0 +1,144 @@
+% Warn when deprecated LaTeX commands are used
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass[letterpaper]{jschaf-resume}
+
+% Make nice clickable urls
+\usepackage[pdftex, pdfusetitle,colorlinks=false,pdfborder={0 0 0}]{hyperref}
+
+% Use expanded computer modern that has bold small caps
+\usepackage[T1]{fontenc}
+\usepackage{array}
+
+\usepackage[absolute]{textpos}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{baselinegrid}
+\usepackage{tocloft}
+
+
+
+\usepackage{calc}
+
+% \usepackage{microtype}
+
+% more control over enumerate
+\usepackage{enumitem}
+
+% Superscripts, 1st, 2nd, etc...
+\newcommand{\st}{\textsuperscript{st}}
+\newcommand{\nd}{\textsuperscript{nd}}
+\newcommand{\rd}{\textsuperscript{rd}}
+\newcommand{\thh}{\textsuperscript{th}}
+
+% Setup list style
+% TODO: Spacing
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+
+\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\labelenumii}{\theenumii.}
+
+\renewcommand{\theenumiii}{\arabic{enumiii}}
+\renewcommand{\labelenumiii}{(\theenumiii)}
+
+\renewcommand{\theenumiv}{\alph{enumiv}}
+\renewcommand{\labelenumiv}{(\theenumiv)}
+
+\title{Joe Schafer Resume}
+\author{Joe Schafer}
+\date{\today}
+
+\hypersetup{%
+pdftitle={Joe Schafer Resume},%
+pdfauthor={Joe Schafer},%
+pdfkeywords={Resume,Google,U.S. Army},%
+}%
+\newcommand{\Mark}[1]{\textsuperscript{#1}}
+
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+
+\newcommand{\resheading}[1]{\vspace{8pt}
+  \parbox{\textwidth}{\setlength{\FrameSep}{\outerbordwidth}
+    \begin{shaded}
+\setlength{\fboxsep}{0pt}\framebox[\textwidth][l]{\setlength{\fboxsep}{4pt}\fcolorbox{shadecolorB}{shadecolorB}{\textbf{\sffamily{\mbox{~}\makebox[6.762in][l]{\large #1} \vphantom{p\^{E}}}}}}
+    \end{shaded}
+  }\vspace{-5pt}
+}
+\newcommand{\cventry}[3]{
+\begin{tabularx}{3.5in}{X<{\cftdotfill{\cftsecdotsep}}@{}r}
+  \textbf{#1} #2 & #3 \\
+\end{tabularx}}
+
+\begin{document}
+% \lastupdated
+% \twocolumn[{%
+%  \centering
+%  \LARGE The Title \\[1.5em]
+%  \large First Author\Mark{1},
+%         Second Author\Mark{2},
+%         Third Author\Mark{1},
+%         Fourth Author\Mark{2}
+%     and Fifth Author\Mark{3}\\[1em]
+%  \normalsize
+%  \begin{tabular}{*{2}{>{\centering}p{.25\textwidth}}}
+%   \Mark{1}Department1 & \Mark{2}Department2 \tabularnewline
+%   School1 & School2  \tabularnewline
+%   \url{email1} & \url{email2}
+%  \end{tabular}\\[3em] % some more space after the title part
+% }]
+
+\section{Work}
+
+\cventry{Google}{Software Engineer}{2016-present}
+\begin{itemize}
+  \resitem Developed a project management application that integrates with Gmail
+  through JavaScript, Python and Java.  Increased development velocity by
+  reducing application testing time by 20x.
+\end{itemize}
+
+\cventry{U.S. Army}{Infantry Instructor}{2014-16}
+\begin{itemize}
+  \resitem Taught and mentored 120 Infantry lieutenants to lead a platoon in
+  battle, plan decisive operations, and overcome the adversity of combat.
+  Influenced 5 levels of senior executives to transition school from a
+  hierarchical organizational structure to committee design resulting in every
+  subsequent class achieving record high performance.
+\end{itemize}
+
+\cventry{U.S. Army}{Infantry Officer}{2010-14}
+
+\begin{itemize}
+  \resitem Planned all logistics operations for an 815-man Airborne Infantry
+  Battalion capable of worldwide deployment in 96 hours.  Planned and moved 100
+  vehicles and 30 containers over 1000 miles on time and on schedule.  Ranked
+  \#1 of 6 peer leaders for leadership and influence two levels up.  Led a
+  22-man, heavy weapons platoon with \$17.5M of equipment through combat
+  operations in Afghanistan.  Planned and led 25 tactical ground missions over
+  3,000 miles in combat.  Led through six Improvised Explosive Device (IED)
+  attacks and five enemy ambushes.
+\end{itemize}
+
+\section{Education}
+
+Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel
+tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac
+leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu,
+wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in
+ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.
+Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod
+elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat
+quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam
+feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus
+tellus lacinia purus, et dictum nunc justo sit amet elit.
+
+\section{Open Source Software}
+
+Phasellus lacus. Pellentesque dapibus suscipit ligula.  Phasellus at dui in
+ligula mollis ultricies.
+
+Aliquam posuere. Nunc rutrum turpis sed pede.  Aliquam posuere.
+
+
+\showbaselinegrid
+\end{document}
