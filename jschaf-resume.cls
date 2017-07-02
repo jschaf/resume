@@ -8,18 +8,12 @@
 \LoadClass{article}
 
 % Package Imports
+
 % Needed to make fixed length table
-% \RequirePackage{array}
 % % Needed to handle list environment
 % \RequirePackage{enumitem}
 % % Needed to handle text alignment
-% \RequirePackage{ragged2e}
-% Needed to configure page layout
-\RequirePackage{geometry}
-% Needed to make header & footer effeciently
-\RequirePackage{fancyhdr}
 % % Needed to manage colors
-% \RequirePackage{xcolor}
 % % Needed to use \ifxetex-\else-\fi statement
 % \RequirePackage{ifxetex}
 % % Needed to use \if-\then-\else statement
@@ -29,35 +23,39 @@
 % Needed to change line spacing in specific environment
 % \RequirePackage{setspace}
 % Needed to manage fonts
-% \RequirePackage[quiet]{fontspec}
 % To support LaTeX quoting style
 % Needed to deal hyperlink
-% \RequirePackage[hidelinks,unicode]{hyperref}
-% \hypersetup{%
-%   pdftitle={},
-%   pdfauthor={},
-%   pdfsubject={},
-%   pdfkeywords={}
-% }
+
+\RequirePackage[pdftex, pdfusetitle,colorlinks=false,pdfborder={0 0 0}]{hyperref}
+\RequirePackage[quiet]{fontspec}
+\RequirePackage{array}
+\RequirePackage{fancyhdr}
+\RequirePackage{geometry}
+\RequirePackage{parskip}
+\RequirePackage{ragged2e}
+\RequirePackage{tabularx}
+\RequirePackage{titlesec}
+\RequirePackage{xcolor}
 
 % Page Layout
-% Set margins easily
 \geometry{margin=1in}
+\setlength{\parindent}{0pt}
 
-%% Header & Footer
-% Set offset to each header and footer
+% Header & Footer
 \fancyhfoffset{0em}
-% Remove head rule
 \renewcommand{\headrulewidth}{0pt}
-% Clear all header & footer fields
 \fancyhf{}
-% Enable if you want to make header or footer using fancyhdr
 \pagestyle{fancy}
+
+% Fonts
+\setromanfont[Ligatures=TeX,Numbers=OldStyle]{TeX Gyre Pagella}
+\setsansfont[Ligatures=TeX,Scale=MatchLowercase]{TeX Gyre Heros}
+\setmonofont[Scale=MatchLowercase]{Inconsolata}
 
 % Color definitions
 % \definecolor{date}{HTML}{666666}
 % \definecolor{primary}{HTML}{2b2b2b}
-% \definecolor{headings}{HTML}{6A6A6A}
+\definecolor{headings}{HTML}{6A6A6A}
 % \definecolor{subheadings}{HTML}{333333}
 
 % Date command
@@ -71,28 +69,26 @@
 % \end{textblock}\normalfont}
 
 % Headings
-% \titleformat{\section}{\color{headings}\fontsize{16pt}{24pt}\selectfont \raggedright\uppercase}{} {0em}{}
+\titleformat{\section}{\color{headings}\fontsize{16pt}{24pt}\selectfont \raggedright}{} {0em}{}
+
 
 % Commands
 
-% For elements of entry
-% \newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-% \newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
-% \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
-% \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
-% \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+% Superscripts, 1st, 2nd, etc...
+\newcommand{\st}{\textsuperscript{st}}
+\newcommand{\nd}{\textsuperscript{nd}}
+\newcommand{\rd}{\textsuperscript{rd}}
+\newcommand{\thh}{\textsuperscript{th}}
 
-% % Define an entry of cv information
-% % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
-% \newcommand*{\cventry}[5]{%
-%   \vspace{-2.0mm}
-%   \setlength\tabcolsep{0pt}
-%   \setlength{\extrarowheight}{0pt}
-%   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-%     \ifempty{#2#3}
-%       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-%       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-%       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-%     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
-%   \end{tabular*}%
-% }
+
+% CV Entries
+\newcommand{\workentry}[3]{%
+  \begin{tabularx}{\columnwidth}{@{}p{0.8in}@{}Xr@{}}
+    \textbf{#1} & #2 & #3 \\
+  \end{tabularx}}
+
+
+\newcommand{\educationentry}[2]{%
+  \begin{tabularx}{\columnwidth}{@{}Xr@{}}
+    \textbf{#1} & #2 \\
+  \end{tabularx}}

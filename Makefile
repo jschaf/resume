@@ -30,7 +30,7 @@ all: resume.pdf
 # missing file reference and interactively asking you for an alternative.
 
 resume.pdf: resume.tex jschaf-resume.cls
-	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make resume.tex
+	latexmk -pdflua -interaction=nonstopmode -time resume.tex
 
 watch:
 	when-changed resume.tex jschaf-resume.cls -c make
