@@ -85,7 +85,8 @@
   {\enditemize}
 
 
-\newcommand{\educationentry}[2]{%
+\newcommand{\educationentry}[2]{{%
+  \fontsize{13pt}{16pt}\selectfont%
   \begin{tabularx}{\columnwidth}{@{}Xr@{}}
-    \textbf{#1} & #2 \\
-  \end{tabularx}}
+    #1 & #2 \\
+  \end{tabularx}}}
