@@ -55,22 +55,12 @@
 % \definecolor{date}{HTML}{666666}
 % \definecolor{primary}{HTML}{2b2b2b}
 \colorlet{urlcolor}{blue!40!black}
-\definecolor{headings}{HTML}{222222}
+\colorlet{headings}{red!40!black}
 
 % \definecolor{subheadings}{HTML}{333333}
 
-% Date command
-% \setlength{\TPHorizModule}{1mm}
-% \setlength{\TPVertModule}{1mm}
-% \textblockorigin{0mm}{5mm}
-% \newcommand{\lastupdated}{\begin{textblock}{60}(165,0)
-% \color{date}
-% Last Updated on
-% \today
-% \end{textblock}\normalfont}
-
 % Headings
-\titlespacing\section{0pt}{12pt}{0pt}
+\titlespacing\section{0pt}{16pt}{0pt}
 
 \titleformat{\section}{\fontfamily{\sfdefault}\color{headings}\fontsize{18pt}{24pt}\selectfont \raggedright}{}{0em}{}
 
@@ -83,9 +73,9 @@
   \vspace{12pt}
   \fontsize{13pt}{16pt}\selectfont%
   \begin{tabularx}{\columnwidth}{@{}p{1in}@{}Xr@{}}
-    #1 & #2 & #3 \\
+    #1 & \textit{#2} & #3 \\
   \end{tabularx}%
-  \vspace*{-6pt}%
+  \vspace*{-4pt}%
 }}
 
 \newenvironment{workitems}
