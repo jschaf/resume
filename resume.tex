@@ -1,20 +1,15 @@
 % Warn when deprecated LaTeX commands are used
 \RequirePackage[l2tabu, orthodox]{nag}
 
-\documentclass[letterpaper]{jschaf-resume}
+\documentclass[letterpaper,11pt]{jschaf-resume}
 
 % TODO: use fonts Charter BT and Frutiger
 
 \usepackage[absolute]{textpos}
 \usepackage{baselinegrid}
-\usepackage{tocloft}
 \usepackage{paracol}
+\usepackage[activate={true,nocompatibility},final,tracking=true,factor=1100,stretch=10,shrink=10]{microtype}
 
-\usepackage{enumitem}
-
-
-
-% \usepackage{microtype}
 
 \title{Joe Schafer Resume}
 \author{Joe Schafer}
@@ -24,14 +19,24 @@
   pdftitle={Joe Schafer Resume},
   pdfauthor={Joe Schafer},
   pdfkeywords={Resume,Google,U.S. Army},
+  colorlinks=true,
+  urlcolor=urlcolor
 }
 
-\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+
+
+% Fonts
+\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+\setromanfont[SmallCapsFeatures={LetterSpace=6},Numbers={Proportional,OldStyle}]{Charis SIL}
+\setsansfont[LetterSpace=3, Numbers={Proportional,OldStyle}]{Myriad Pro}
+\setmonofont{Inconsolata}
 
 \newcommand*{\emailLink}{\href{mailto:joe.schafer@delta46.us}{joe.schafer@delta46.us}}
 \newcommand*{\linkedInLink}{\href{http://linkedin.com/in/jschaf}{linkedin.com/in/jschaf}}
 \newcommand*{\githubLink}{\href{http://github.com/jschaf}{github.com/jschaf}}
 \newcommand*{\blogLink}{\href{http://blog.d46.us}{blog.d46.us}}
+
+\newcommand*{\action}[1]{\textbf{#1}}
 
 \begin{document}
 
@@ -40,10 +45,10 @@
 
 \columnratio{0.61996}
 % TODO: make column sep work
-\setlength{\tabcolsep}{18pt}
+% \setlength{\tabcolsep}{18pt}
 
 \begin{paracol}{2}
-{\LARGE Joe Schafer}
+{\fontsize{32px}{48px}\selectfont Joe Schafer}
 
 \switchcolumn
 
@@ -57,40 +62,46 @@
 
 \begin{paracol}{2}
 
-\section{Work}
+\section*{Work}
 
-\workentry{Google}{Software Engineer}{2016-present}
-\begin{itemize}
-  \resitem Developed a project management application that integrates with Gmail
+\workheading{Google}{Software Engineer}{2016-present}
+\begin{workitems}
+  \item Developed a project management application that integrates with Gmail
   through JavaScript, Python and Java.  Increased development velocity by
   reducing application testing time by 20x.
-\end{itemize}
+\end{workitems}
 
-\workentry{U.S. Army}{Infantry Instructor}{2014-16}
-\begin{itemize}
-  \resitem Taught and mentored 120 Infantry lieutenants to lead a platoon in
+\workheading{U.S. Army}{Infantry Instructor}{2014-16}
+\begin{workitems}
+  \item Taught and mentored 120 Infantry lieutenants to lead a platoon in
   battle, plan decisive operations, and overcome the adversity of combat.
-  Influenced 5 levels of senior executives to transition school from a
+  \item Influenced 5 levels of executives to transition school from a
   hierarchical organizational structure to committee design resulting in every
   subsequent class achieving record high performance.
-\end{itemize}
+\end{workitems}
 
-\workentry{U.S. Army}{Infantry Officer}{2010-14}
-\begin{itemize}
-  \resitem Planned all logistics operations for an 815-man Airborne Infantry
-  Battalion capable of worldwide deployment in 96 hours.  Planned and moved 100
-  vehicles and 30 containers over 1000 miles on time and on schedule.  Ranked
-  1 of 6 peer leaders for leadership and influence two levels up.  Led a
-  22-man, heavy weapons platoon with \$17.5M of equipment through combat
-  operations in Afghanistan.  Planned and led 25 tactical ground missions over
-  3,000 miles in combat.  Led through six Improvised Explosive Device (IED)
-  attacks and five enemy ambushes.
-\end{itemize}
+\workheading{U.S. Army}{Infantry Officer}{2010-14}
+\begin{workitems}
+\item \action{Planned} all logistics operations for an 815-man Airborne Infantry
+  Battalion capable of worldwide deployment in 96 hours.
 
-\section{Education}
+\item Planned and moved 100 vehicles and 30 containers over 1000 miles on time
+  and on schedule.
+
+\item Ranked 1 of 6 peer leaders for leadership and influence two levels up.
+
+\item Led a 22-man, heavy weapons platoon with \$17.5M of equipment through
+  combat operations in Afghanistan.
+
+\item Planned and led 25 tactical ground missions over 3,000 miles in combat.
+  Led through six Improvised Explosive Device (IED) attacks and five enemy
+  ambushes.
+\end{workitems}
+
+\section*{Education}
 
 \educationentry{Stanford, Graduate School of Business}{2017}
-Certificate in Innovation and Entrepreneurship.
+Certificate in Innovation and Entrepreneurship.\\
 Fulltime, on campus, one month intensive program.
 
 \educationentry{United States Military Academy, West Point}{2010}
@@ -98,7 +109,7 @@ B.S., Computer Science.
 
 \switchcolumn
 
-\section{Open Source Software}
+\section*{Open Source Software}
 
 Emacs Startup Profiler Profiles the start-up time of a popular programming
 editor.  Over 110 stars on GitHub and 5,000 downloads.
@@ -108,17 +119,17 @@ integrate with the web framework Flask.  Packaged by Debian.  Over 10,000
 downloads.
 
 
-\section{Awards}
+\section*{Awards}
 Ranger Tab Intense 61-day combat leadership course oriented towards small-unit
 tactics.
 
 
-\section{Hobbies}
+\section*{Hobbies}
 Powerlifting: deadlift-425lb, squat-375lb, bench-260lb
 
 Exploring new programming languages: Rust, Haskell, Dart, Typescript
 
 \end{paracol}
 
-% \showbaselinegrid
+\showbaselinegrid
 \end{document}

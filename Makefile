@@ -29,10 +29,11 @@ all: resume.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-resume.pdf: resume.tex jschaf-resume.cls
+resume.pdf: resume.tex jschaf-resume.cls baselinegrid.sty
 	latexmk -pdflua -interaction=nonstopmode -time resume.tex
 
 watch:
-	when-changed resume.tex jschaf-resume.cls -c make
+	when-changed resume.tex jschaf-resume.cls baselinegrid.sty -c make
 
 clean:
+	latexmk -c

@@ -26,20 +26,23 @@
 % To support LaTeX quoting style
 % Needed to deal hyperlink
 
-\RequirePackage[pdftex, pdfusetitle,colorlinks=false,pdfborder={0 0 0}]{hyperref}
-\RequirePackage[quiet]{fontspec}
 \RequirePackage{array}
+\RequirePackage{enumitem}
+\RequirePackage[quiet]{fontspec}
+\RequirePackage{hyperref}
 \RequirePackage{fancyhdr}
 \RequirePackage{geometry}
 \RequirePackage{parskip}
 \RequirePackage{ragged2e}
 \RequirePackage{tabularx}
 \RequirePackage{titlesec}
-\RequirePackage{xcolor}
+\RequirePackage[hyperref]{xcolor}
 
 % Page Layout
 \geometry{margin=1in}
 \setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=*}
+
 
 % Header & Footer
 \fancyhfoffset{0em}
@@ -47,15 +50,13 @@
 \fancyhf{}
 \pagestyle{fancy}
 
-% Fonts
-\setromanfont[Ligatures=TeX,Numbers=OldStyle]{TeX Gyre Pagella}
-\setsansfont[Ligatures=TeX,Scale=MatchLowercase]{TeX Gyre Heros}
-\setmonofont[Scale=MatchLowercase]{Inconsolata}
 
 % Color definitions
 % \definecolor{date}{HTML}{666666}
 % \definecolor{primary}{HTML}{2b2b2b}
-\definecolor{headings}{HTML}{6A6A6A}
+\colorlet{urlcolor}{blue!40!black}
+\definecolor{headings}{HTML}{333333}
+
 % \definecolor{subheadings}{HTML}{333333}
 
 % Date command
@@ -69,23 +70,28 @@
 % \end{textblock}\normalfont}
 
 % Headings
-\titleformat{\section}{\color{headings}\fontsize{16pt}{24pt}\selectfont \raggedright}{} {0em}{}
+\titlespacing\section{0pt}{12pt}{0pt}
+
+\titleformat{\section}{\color{headings}\fontsize{16pt}{24pt}\selectfont \raggedright}{}{0em}{}
 
 
 % Commands
 
-% Superscripts, 1st, 2nd, etc...
-\newcommand{\st}{\textsuperscript{st}}
-\newcommand{\nd}{\textsuperscript{nd}}
-\newcommand{\rd}{\textsuperscript{rd}}
-\newcommand{\thh}{\textsuperscript{th}}
-
-
-% CV Entries
-\newcommand{\workentry}[3]{%
-  \begin{tabularx}{\columnwidth}{@{}p{0.8in}@{}Xr@{}}
+% Work Entries
+\newcommand{\workheading}[3]{%
+{%
+  \color{headings}\fontsize{13pt}{16pt}\selectfont%
+  \begin{tabularx}{\columnwidth}{@{}p{1in}@{}Xr@{}}
     \textbf{#1} & #2 & #3 \\
-  \end{tabularx}}
+  \end{tabularx}%
+  \vspace*{-6pt}%
+}}
+
+\newenvironment{workitems}
+  {\itemize[label={},labelsep=0pt]
+   \let\origmakelabel\makelabel
+   \renewcommand{\makelabel}[1]{\origmakelabel{##1}}}
+  {\enditemize}
 
 
 \newcommand{\educationentry}[2]{%

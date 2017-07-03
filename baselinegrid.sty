@@ -26,18 +26,18 @@
     remember picture, overlay,
     every node/.style={inner sep=0pt,outer sep=0pt},
     column line/.style={line width=1pt,color=red!10},
-    base line/.style={line width=0.4pt,color=blue!10},
+    base line/.style={line width=0.4pt,color=blue!10,densely dashed},
     ]
-    \coordinate (column line) at (\gridcolumnwidth,0);
-    \pgfmathsetmacro\innergridcolumns{\gridcolumns-1}
-    \foreach \i in {1,...,\innergridcolumns} {
-      \draw[column line]
-      let \n{j}={max(\i-1,0)} in
-      ($(current page text area.north west) + \i*(\gridcolumnwidth, 0) + \n{j}*(\gridgutterwidth, 0)$)
-      -- ++(0,-\textheight) ++ (\gridgutterwidth, 0) -- +(0, \textheight);
-    }
-    \draw [column line] (current page text area.north west) -- +(0, -\textheight);
-    \draw [column line] (current page text area.north east) -- +(0, -\textheight);
+
+    % \pgfmathsetmacro\innergridcolumns{\gridcolumns-1}
+    % \foreach \i in {1,...,\innergridcolumns} {
+    %   \draw[column line]
+    %   let \n{j}={max(\i-1,0)} in
+    %   ($(current page text area.north west) + \i*(\gridcolumnwidth, 0) + \n{j}*(\gridgutterwidth, 0)$)
+    %   -- ++(0,-\textheight) ++ (\gridgutterwidth, 0) -- +(0, \textheight);
+    % }
+    % \draw [column line] (current page text area.north west) -- +(0, -\textheight);
+    % \draw [column line] (current page text area.north east) -- +(0, -\textheight);
 
 
     \pgfmathsetmacro\numbaselines{round(\textheight/\baselinegrid)}
