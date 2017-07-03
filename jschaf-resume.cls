@@ -72,7 +72,7 @@
 % Headings
 \titlespacing\section{0pt}{12pt}{0pt}
 
-\titleformat{\section}{\fontfamily{\sfdefault}\color{headings}\fontsize{16pt}{24pt}\selectfont \raggedright}{}{0em}{}
+\titleformat{\section}{\fontfamily{\sfdefault}\color{headings}\fontsize{18pt}{24pt}\selectfont \raggedright}{}{0em}{}
 
 
 % Commands
@@ -80,9 +80,10 @@
 % Work Entries
 \newcommand{\workheading}[3]{%
 {%
+  \vspace{12pt}
   \fontsize{13pt}{16pt}\selectfont%
   \begin{tabularx}{\columnwidth}{@{}p{1in}@{}Xr@{}}
-    \textbf{#1} & #2 & #3 \\
+    #1 & #2 & #3 \\
   \end{tabularx}%
   \vspace*{-6pt}%
 }}

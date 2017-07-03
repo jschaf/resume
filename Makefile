@@ -33,6 +33,7 @@ resume.pdf: resume.tex jschaf-resume.cls baselinegrid.sty
 	latexmk -pdflua -interaction=nonstopmode -time resume.tex
 
 watch:
+	make resume.pdf || true
 	when-changed resume.tex jschaf-resume.cls baselinegrid.sty -c make
 
 clean:

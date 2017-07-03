@@ -27,8 +27,30 @@
 
 % Fonts
 \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
-\setromanfont[SmallCapsFeatures={LetterSpace=6},Numbers={Proportional,OldStyle}]{Charis SIL}
-\setsansfont[LetterSpace=3, Numbers={Proportional,OldStyle}]{Lato}
+\setmainfont{Arno Pro}[
+BoldFont="Arno Pro Smbd",
+SmallCapsFeatures={LetterSpace=6},
+Numbers={Proportional,OldStyle},
+SizeFeatures={
+        {Size={-9},Font=* Caption},
+        {Size={9-14},Font=*},
+        {Size={14-24},Font=* Subhead},
+        {Size={24-},Font=* Display}
+    },
+]
+
+\newfontfamily\semibold[%
+    Numbers=OldStyle,
+    Kerning=Uppercase,
+    SizeFeatures={%
+        {Size={-9},Font=* Caption},
+        {Size={9-14},Font=*},
+        {Size={14-24},Font=* Subhead},
+        {Size={24-},Font=* Display}
+    },
+]{Arno Pro Smbd}
+
+\setsansfont[LetterSpace=3, Numbers={Proportional,OldStyle}]{Myriad Pro}
 \setmonofont{Inconsolata}
 
 \newcommand*{\emailLink}{\href{mailto:joe.schafer@delta46.us}{joe.schafer@delta46.us}}
@@ -36,7 +58,13 @@
 \newcommand*{\githubLink}{\href{http://github.com/jschaf}{github.com/jschaf}}
 \newcommand*{\blogLink}{\href{http://blog.d46.us}{blog.d46.us}}
 
-\newcommand*{\action}[1]{\textbf{#1}}
+\newcommand*{\action}[1]{{\semibold #1}}
+
+% \newcommand{\bfdefault}{sb}
+
+% \makeatletter
+% \renewcommand{\bfdefault}{\ifx\f@family\sfdefault sb\else bx\fi}
+% \makeatother
 
 \begin{document}
 
@@ -50,19 +78,18 @@
 {\fontfamily{\sfdefault}\fontsize{36px}{48px}\selectfont Joe Schafer}
 
 \switchcolumn
-
+{\fontfamily\sfdefault\selectfont
 \emailLink\\
 \linkedInLink\\
 \githubLink\\
 \blogLink\\
-
+}
 \end{paracol}
 
-
 \begin{paracol}{2}
-
 \section*{Work Experience}
 
+\vspace{-12pt}
 \workheading{Google}{Software Engineer}{2016-present}
 \begin{workitems}
   \item \action{Developed} a project management application that integrates with Gmail
