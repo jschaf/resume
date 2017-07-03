@@ -55,7 +55,7 @@
 % \definecolor{date}{HTML}{666666}
 % \definecolor{primary}{HTML}{2b2b2b}
 \colorlet{urlcolor}{blue!40!black}
-\definecolor{headings}{HTML}{333333}
+\definecolor{headings}{HTML}{222222}
 
 % \definecolor{subheadings}{HTML}{333333}
 
@@ -72,7 +72,7 @@
 % Headings
 \titlespacing\section{0pt}{12pt}{0pt}
 
-\titleformat{\section}{\color{headings}\fontsize{16pt}{24pt}\selectfont \raggedright}{}{0em}{}
+\titleformat{\section}{\fontfamily{\sfdefault}\color{headings}\fontsize{16pt}{24pt}\selectfont \raggedright}{}{0em}{}
 
 
 % Commands
@@ -80,7 +80,7 @@
 % Work Entries
 \newcommand{\workheading}[3]{%
 {%
-  \color{headings}\fontsize{13pt}{16pt}\selectfont%
+  \fontsize{13pt}{16pt}\selectfont%
   \begin{tabularx}{\columnwidth}{@{}p{1in}@{}Xr@{}}
     \textbf{#1} & #2 & #3 \\
   \end{tabularx}%
