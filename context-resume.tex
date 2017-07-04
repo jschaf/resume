@@ -1,0 +1,71 @@
+\setuppapersize[letter]
+\definefontfamily [mainface] [rm] [Minion Pro]
+\definefontfamily [headerface] [rm] [Myriad Pro]
+\setupbodyfont[mainface]
+\setuphead[section][style=\headerface]
+
+\defineparagraphs[TwoColumns][n=2]
+\setupparagraphs[TwoColumns][1][tolerance=verytolerant,width=0.61996\textwidth]
+
+\setupinteraction[state=start,color=green]
+\setuplayout[grid=yes]
+\showgrid
+\showframe
+
+\useURL[author-email][mailto:joe.schafer@delta46.us][][joe.schafer@delta46.us]
+\useURL[author-linkedin][http://linkedin.com/in/jschaf][][linkedin.com/in/jschaf]
+\useURL[author-github][http://github.com/jschaf][][github.com/jschaf]
+\useURL[author-blog][http://blog.d46.us][][blog.d46.us]
+\useURL[eslint-closure][https://github.com/google/eslint-closure][][library]
+
+\defineenumeration
+  [WorkItems]
+  [location=top,
+    text=\blank,
+    between=\blank,
+    before=\blank,
+    after=\blank]
+\setupenumerations[WorkItems][]
+\defineenumeration[first]
+
+\define[1]\Action{{\bf #1}}
+
+\starttext
+\startTwoColumns
+
+Joe Schafer
+
+\startitemize
+\item \Action{Released} an open source \from[eslint-closure] to check the style
+  of Google Closure JavaScript code.
+\item \Action{Split} a 4\high{GB} monolithic binary into 3 microservices.
+\item \Action{Developed} a project management application that integrates with Gmail
+  through JavaScript, Python and Java.
+\item \Action{Reduced} application testing time 20-fold by implementing hot-reload of JavaScript.
+\stopitemize
+
+
+\TwoColumns
+\from[author-email]
+
+\from[author-linkedin]
+
+\from[author-github]
+
+\from[author-blog]
+
+Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel
+tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac
+leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu,
+wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in
+ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.
+Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod
+elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat
+quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam
+feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus
+tellus lacinia purus, et dictum nunc justo sit amet elit.
+
+\stopTwoColumns
+
+
+\stoptext
