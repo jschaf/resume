@@ -1,4 +1,8 @@
+% Page Layout
 \setuppapersize[letter]
+\setuplayout[grid=yes,backspace=1in,margin=0in,rightedge=0in,rightmargin=0in,topspace=1in,header=0in,footer=0in]
+
+% Fonts
 \definefontfamily [mainface] [rm] [Minion Pro]
 \definefontfamily [headerface] [rm] [Myriad Pro]
 \setupbodyfont[mainface]
@@ -7,8 +11,10 @@
 \defineparagraphs[TwoColumns][n=2]
 \setupparagraphs[TwoColumns][1][tolerance=verytolerant,width=0.61996\textwidth]
 
+\definecolumnset[GoldenColumns][n=2]
+\setupcolumnset[GoldenColumns][width=0.61996\textwidth]
+
 \setupinteraction[state=start,color=green]
-\setuplayout[grid=yes]
 \showgrid
 \showframe
 
@@ -18,23 +24,24 @@
 \useURL[author-blog][http://blog.d46.us][][blog.d46.us]
 \useURL[eslint-closure][https://github.com/google/eslint-closure][][library]
 
-\defineenumeration
-  [WorkItems]
-  [location=top,
-    text=\blank,
-    between=\blank,
-    before=\blank,
-    after=\blank]
-\setupenumerations[WorkItems][]
-\defineenumeration[first]
-
 \define[1]\Action{{\bf #1}}
 
+\define[3]\WorkHeading{%
+\starttable[|lp(.3\textwidth)s0|lp(.4\textwidth)s0|rp(.3\textwidth)s0|]
+\NC #1  \NC #2 \NC #3 \NC\NR
+\stoptable%
+}
+
+
 \starttext
-\startTwoColumns
+\startcolumnset [GoldenColumns]
+% \startTwoColumns
 
 Joe Schafer
 
+\startsection[title={Work Experience}]
+
+\WorkHeading{Google}{Software Engineer}{2016-present}
 \startitemize
 \item \Action{Released} an open source \from[eslint-closure] to check the style
   of Google Closure JavaScript code.
@@ -44,8 +51,28 @@ Joe Schafer
 \item \Action{Reduced} application testing time 20-fold by implementing hot-reload of JavaScript.
 \stopitemize
 
+\WorkHeading{U.S. Army}{Infantry Instructor}{2014-16}
+\startitemize
+\item \Action{Influenced} 5 levels of executives to transition the Infantry
+  training course to a committee design resulting in every subsequent class
+  achieving record high performance.
+\item \Action{Taught} and \Action{mentored} 120 Infantry lieutenants to lead a
+  platoon in battle and plan decisive operations.
 
-\TwoColumns
+\stopitemize
+
+\WorkHeading{U.S. Army}{Infantry Officer}{2010-14}
+\startitemize
+\item \Action{Planned} all logistics operations for an 815-man Airborne Infantry
+  Battalion capable of worldwide deployment in 96 hours.
+
+\item \Action{Planned} and \Action{led} 25 combat missions in Afghanistan
+  through 6 enemy ambushes and Improvised Explosive Device (IED) attacks.
+\stopitemize
+\stopsection
+
+
+\column
 \from[author-email]
 
 \from[author-linkedin]
@@ -65,7 +92,8 @@ quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam
 feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus
 tellus lacinia purus, et dictum nunc justo sit amet elit.
 
-\stopTwoColumns
+\stopcolumnset
+% \stopTwoColumns
 
 
 \stoptext
