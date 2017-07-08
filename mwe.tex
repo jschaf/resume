@@ -8,12 +8,25 @@
 \setupbodyfont[mainface]
 \setuphead[section][sectionnumber=no,number=no,style=\headerface]
 
-\definecolumnset[GoldenColumns][n=2]
-\setupcolumnset[GoldenColumns][width=0.61996\textwidth]
+\define\GoldenRatio{0.61996}
+\defineparagraphs[GoldenColumns][n=2]
+\setupparagraphs[GoldenColumns][1][width=\GoldenRatio\textwidth]
 
+\starttexdefinition WorkHeading #1#2#3
+  \startlinecorrection
+  \startembeddedxtable[option=stretch,location=low,toffset=0pt,boffset=0pt,loffset=-1.8pt,roffset=-2.1pt]
+    \startxrow
+      \startxcell[width=2.7cm] #1 \stopxcell
+      \startxcell #2 \stopxcell
+      \startxcell \hfill #3 \stopxcell
+    \stopxrow
+  \stopembeddedxtable
+  \stoplinecorrection
+\stoptexdefinition
+
+\setupitemize[symbol=nosymbol,inmargin]
 \setupinteraction[state=start,color=green]
-\showgrid
-\showframe
+\define[1]\Action{{\bf #1}}
 
 \useURL[author-email][mailto:joe.schafer@delta46.us][][joe.schafer@delta46.us]
 \useURL[author-linkedin][http://linkedin.com/in/jschaf][][linkedin.com/in/jschaf]
@@ -21,29 +34,14 @@
 \useURL[author-blog][http://blog.d46.us][][blog.d46.us]
 \useURL[eslint-closure][https://github.com/google/eslint-closure][][library]
 
-\define[1]\Action{{\bf #1}}
-
-% \define[3]\WorkHeading{%
-% \starttable[|lp(.3\textwidth)s0|lp(.4\textwidth)s0|rp(.3\textwidth)s0|]
-% \NC #1  \NC #2 \NC #3 \NC\NR
-% \stoptable%
-% }
-
-% \define[3]\WorkHeading{#1\hfill#2\hfill#3\par}
-% \define[3]\WorkHeading{%
-%   \hbox to 1in {#1} \hbox {#2 #3 \par}}
-\define[3]\WorkHeading{%
-  \makebox[1in]{
-  \hbox to 1in {#1} \hbox {#2 #3 \par}}
-\definesymbol[nosymbol][\nop]
-
-\showboxes
-\setupitemize[symbol=nosymbol,inmargin]
+\showgrid
+\showframe
 
 \starttext
-\startcolumnset [GoldenColumns]
-
+\startGoldenColumns
 Joe Schafer
+
+\blank[3*line]
 
 \startsection[title={Work Experience}]
 
@@ -67,20 +65,16 @@ Joe Schafer
 \stopitemize
 
 \WorkHeading{U.S. Army}{Infantry Officer}{2010-14}
-
-joe \hfill Integer placerat.   \hfill 2016
-
 \startitemize
 \item \Action{Planned} all logistics operations for an 815-man Airborne Infantry
   Battalion capable of worldwide deployment in 96 hours.
-
 \item \Action{Planned} and \Action{led} 25 combat missions in Afghanistan
   through 6 enemy ambushes and Improvised Explosive Device (IED) attacks.
 \stopitemize
+
 \stopsection
 
-
-\column
+\GoldenColumns
 \from[author-email]
 
 \from[author-linkedin]
@@ -89,8 +83,10 @@ joe \hfill Integer placerat.   \hfill 2016
 
 \from[author-blog]
 
-Praesent augue. Nam vestibulum accumsan nisl.  Donec at pede.Praesent fermentum tempor tellus.
+\blank[2*line]
+Rockets
 
-\stopcolumnset
-
+Praesent augue. Nam vestibulum accumsan nisl.  Donec at pede.Praesent fermentum
+tempor tellus.
+\stopGoldenColumns
 \stoptext
