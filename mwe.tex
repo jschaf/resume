@@ -12,17 +12,8 @@
 \defineparagraphs[GoldenColumns][n=2]
 \setupparagraphs[GoldenColumns][1][width=\GoldenRatio\textwidth]
 
-\starttexdefinition WorkHeading #1#2#3
-  \startlinecorrection
-  \startembeddedxtable[option=stretch,location=low,toffset=0pt,boffset=0pt,loffset=-1.8pt,roffset=-2.1pt]
-    \startxrow
-      \startxcell[width=2.7cm] #1 \stopxcell
-      \startxcell #2 \stopxcell
-      \startxcell \hfill #3 \stopxcell
-    \stopxrow
-  \stopembeddedxtable
-  \stoplinecorrection
-\stoptexdefinition
+\define[3]\WorkHeading{%
+  \dontleavehmode\hbox to 2.7cm{#1} #2 \hfill #3}
 
 \setupitemize[symbol=nosymbol,inmargin]
 \setupinteraction[state=start,color=green]
@@ -54,6 +45,8 @@ Joe Schafer
   through JavaScript, Python and Java.
 \item \Action{Reduced} application testing time 20-fold by implementing hot-reload of JavaScript.
 \stopitemize
+
+
 
 \WorkHeading{U.S. Army}{Infantry Instructor}{2014-16}
 \startitemize
