@@ -13,6 +13,9 @@
 % Fonts
 \definefontfeature[default][default]
                   [protrusion=quality, expansion=quality, onum=yes]
+\definefontsize[e]
+\definebodyfontenvironment[default][e=3]
+
 \setupalign[hz,hanging]
 \definefontalternative[se]
 \definefontalternative[liit]
@@ -34,6 +37,14 @@
 \stoptypescript
 \setupbodyfont[myfont,11pt]
 
+\definebar[LightUnderline][rulethickness=0.1,offset=-0.2,continue=yes]
+
+\starttexdefinition unexpanded StyleUrl #1
+   \startbar[LightUnderline]
+     \from[#1]
+   \stopbar
+\stoptexdefinition
+
 % Hyphenation
 \hyphenation{Goo-gle Type-Script Git-Hub}
 
@@ -46,33 +57,35 @@
 \setupparagraphs[GoldenColumns][2][distance=\ColumnGutter]
 
 % Content
-\define[1]\Name{\blank[12pt]{\tfd #1}}
-\define[1]\Heading{\blank[0.6\Baseline]\color[HeadingColor]{\ssa #1}\par\blank[halfline]}
+\define[1]\Name{\blank[12pt]{\tfe #1}}
+\define[1]\Heading{
+  \color[HeadingColor]{\ssa #1}
+  \blank[halfline]}
 \define\CompanyLength{2.7cm}
-\define[3]\WorkHeading{%
-  \dontleavehmode\hbox to \CompanyLength{#1\hfil} #2 \hfill #3}
+\define[3]\WorkHeading{
+  {\tfa \dontleavehmode\hbox to \CompanyLength{#1\hfil} #2 \hfill #3}
+  \vskip -0.5\baselineskip
+}
 \define[2]\EducationHeading{{\se #1}\hfill #2\par}
 
-\define[2]\OpenSourceProject{%
-  {\tf #1}\par%
-  \startbaselinecorrection
-  \setupinterlinespace[line=\SmallBaseline]
-  \startalignment[flushleft] {\tfx #2} \stopalignment
-  \stopbaselinecorrection
+\define[2]\OpenSourceProject{
+  {\tf #1}
+  \startalignment[flushleft] #2 \stopalignment
+  \blank[line]
 }
 
-\define[1]\Contact{{\tfx #1\par}}
-\define[2]\LanguageProficiency{%
-  \startalignment[flushleft] \tfx {\se #1}:  #2 \stopalignment
+\define[1]\Contact{{\tf #1\par}}
+\define[2]\LanguageProficiency{
+  \startalignment[flushleft] {\se #1}:  #2 \stopalignment
 }
-\define[1]\Hobby{%
-  \startalignment[flushleft]{\tfx #1}\stopalignment}
+\define[1]\Hobby{
+  \startalignment[flushleft] #1\stopalignment}
 
 % Colors
 \definecolor[HeadingColor][0.6(red,black)]
 \definecolor[UrlColor][0.6(blue,black)]
 
-\setupitemize[each][packed,inmargin][symbol=nosymbol]
+\setupitemize[each][inmargin][symbol=nosymbol,inbetween={\blank[0.5\Baseline]}]
 \setupinteraction[state=start,color=UrlColor,style=\tf]
 \define[1]\Action{{\se #1}}
 
@@ -87,23 +100,20 @@
 \useURL[pylint-debian][https://packages.debian.org/sid/main/python3-pylint-flask][][Debian]
 \useURL[pylint-downloads][http://pypi-ranking.info/module/pylint-flask][][10,000]
 
-\showgrid
+% \showgrid
 % \showframe
 
 % Begin Document
 \starttext
-
 \startGoldenColumns
+\vskip 0.55\Baseline
 \Name{Joe Schafer}
 \GoldenColumns
-\startbaselinecorrection
-\setupinterlinespace[line=\SmallBaseline]
 \Contact{San Francisco Bay Area}
 \Contact{\from[author-email]}
 \Contact{\from[author-linkedin]}
 \Contact{\from[author-github]}
 \Contact{\from[author-blog]}
-\stopbaselinecorrection
 \stopGoldenColumns
 
 
@@ -115,7 +125,7 @@
 \startitemize
 \item \Action{Released} an open source \from[eslint-closure-library] to check the style
   of Google Closure JavaScript code.
-\item \Action{Split} a 4{\sc gb} monolithic binary into 3 microservices.
+\item \Action{Split} a 4GB monolithic binary into 3 microservices.
 \item \Action{Developed} a project management application that integrates with Gmail
   through JavaScript, Python and Java.
 \item \Action{Reduced} application testing time 20-fold by implementing hot-reload of JavaScript.
@@ -138,6 +148,7 @@
   through 6 enemy ambushes and Improvised Explosive Device (IED) attacks.
 \stopitemize
 
+\vskip \Baseline
 \Heading{Education}
 
 \EducationHeading{Stanford, Graduate School of Business}{2017}
@@ -153,32 +164,32 @@ B.S., Computer Science.
 \blank
 \Heading{Open Source Projects}
 
-\OpenSourceProject{\from[eslint-closure]}{
+\vskip 0.5\baselineskip
+\OpenSourceProject{\StyleUrl{eslint-closure}}{
   A heavily customized ESLint configuration and plugin for JavaScript following
   the Google style guide.
 }
 
-\OpenSourceProject{\from[esup]}{
+\OpenSourceProject{\StyleUrl{esup}}{
   Profiles the start-up time of a popular programming editor.  Over 110 stars on
   GitHub and 5,000 downloads.
 }
 
-\blank[0.43\Baseline]
-\OpenSourceProject{\from[pylint]}{
+\OpenSourceProject{\StyleUrl{pylint}}{
   A plugin for Pylint, a static analysis tool, to integrate with the web
-  framework Flask.  Packaged by \from[pylint-debian].  Over
-  \from[pylint-downloads] downloads.
+  framework Flask.  Packaged by \StyleUrl{pylint-debian}.  Over
+  \StyleUrl{pylint-downloads} downloads.
 }
 
+\vskip 0.5\Baseline
 \Heading{Languages}
 \LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc SQL}, Bash, Emacs Lisp, \LaTeX}
 \LanguageProficiency{Familiar}{Rust, Go, TypeScript, Ada}
 
-\blank[1*line]
+\vskip 1.5\Baseline
 \Heading{Hobbies}
 \Hobby{Powerlifting. deadlift: 425lb, squat: 375lb, bench: 260lb}
+\blank[line]
 \Hobby{Exploring new programming languages like Rust, Dart, and TypeScript.}
 
 \stopGoldenColumns
-
-\stoptext
