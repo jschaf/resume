@@ -15,4 +15,5 @@ watch:
 	$(MAKE) -c $(CONTEXT_DIR) watch
 
 clean:
-	latexmk -c
+	$(MAKE) -c $(LATEX_DIR) clean
+	$(MAKE) -c $(CONTEXT_DIR) clean
