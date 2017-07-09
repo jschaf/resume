@@ -1,9 +1,15 @@
 LATEX_DIR := latex
 CONTEXT_DIR := context
+OUTPUT_DIR := output
+RESUME_NAME := joe-schafer-resume-$(shell date +%F).pdf
 
-.PHONY: resume.pdf all clean
+.PHONY: all clean latex-resume context-resume publish
 
-all: context-resume
+all: publish
+
+publish: context-resume
+	mkdir -p $(OUTPUT_DIR)
+	mv $(CONTEXT_DIR)/resume-context.pdf $(OUTPUT_DIR)/$(RESUME_NAME)
 
 latex-resume:
 	$(MAKE) -C $(LATEX_DIR) resume
@@ -15,5 +21,4 @@ watch:
 	$(MAKE) -c $(CONTEXT_DIR) watch
 
 clean:
-	$(MAKE) -c $(LATEX_DIR) clean
-	$(MAKE) -c $(CONTEXT_DIR) clean
+	rm -f $(OUTPUT_DIR)/*

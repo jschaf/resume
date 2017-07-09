@@ -1,6 +1,8 @@
 SOURCE_FILE := resume-context.tex
-.PHONY: resume-context.pdf all clean
-all: resume-context.pdf
+.PHONY: resume-context.pdf resume watch all clean
+all: resume
+
+resume: resume-context.pdf
 
 resume-context.pdf: resume-context.tex type-minionpro.tex type-myriadpro.tex
 	context -interaction=nonstopmode --silent='mkiv lua stats,fonts' $(SOURCE_FILE)

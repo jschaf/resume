@@ -2,11 +2,11 @@ SOURCE_FILE := resume-latex.tex
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
-.PHONY: resume-latex.pdf all clean
+.PHONY: resume-latex.pdf all clean resume watch clean
 
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
-all: resume-latex.pdf
+all: resume
 
 # CUSTOM BUILD RULES
 
@@ -32,6 +32,8 @@ all: resume-latex.pdf
 
 resume-latex.pdf: resume-latex.tex sound-resume.cls baselinegrid.sty
 	latexmk -pdflua -interaction=nonstopmode -time $(SOURCE_FILE)
+
+resume: resume-latex.pdf
 
 watch:
 	make resume-latex.pdf || true
