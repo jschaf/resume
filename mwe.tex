@@ -2,11 +2,7 @@
 \setuppapersize[letter]
 \setuplayout[grid=yes,width=6.5in,header=0pt]
 
-% Fonts
-
-% \definefontfamily [mainface] [rm] [Minion Pro]
-% \definefontfamily [headerface] [rm] [Myriad Pro]
-
+% Baseline Grid
 % default line=2.8ex
 \newdimen\Baseline
 \Baseline=14pt
@@ -14,11 +10,10 @@
 \SmallBaseline=0.806\Baseline
 \setupinterlinespace[line=\Baseline]
 
+% Fonts
 \definefontfeature[default][default]
                   [protrusion=quality, expansion=quality, onum=yes]
 \setupalign[hz,hanging]
-
-
 \definefontalternative[se]
 \definefontalternative[liit]
 \definefontalternative[li]
@@ -27,7 +22,6 @@
 \definefontalternative[seit]
 \definefontalternative[bl]
 \definefontalternative[blit]
-
 
 \usetypescript[type-adobe]
 \usetypescript[type-minionpro]
@@ -86,8 +80,8 @@
 \useURL[author-linkedin][http://linkedin.com/in/jschaf][][linkedin.com/in/jschaf]
 \useURL[author-github][http://github.com/jschaf][][github.com/jschaf]
 \useURL[author-blog][http://blog.d46.us][][blog.d46.us]
-\useURL[eslint-closure][https://github.com/google/eslint-closure][][library]
-
+\useURL[eslint-closure][https://github.com/google/eslint-closure][][Eslint for Google Closure JS]
+\useURL[eslint-closure-library][https://github.com/google/eslint-closure][][library]
 \useURL[esup][https://github.com/jschaf/esup][][Emacs Startup Profiler]
 \useURL[pylint][https://github.com/jschaf/pylint-flask][][Python Plugin for Flask]
 \useURL[pylint-debian][https://packages.debian.org/sid/main/python3-pylint-flask][][Debian]
@@ -104,6 +98,7 @@
 \GoldenColumns
 \startbaselinecorrection
 \setupinterlinespace[line=\SmallBaseline]
+\Contact{San Francisco Bay Area}
 \Contact{\from[author-email]}
 \Contact{\from[author-linkedin]}
 \Contact{\from[author-github]}
@@ -118,7 +113,7 @@
 
 \WorkHeading{Google}{Software Engineer}{2016-present}
 \startitemize
-\item \Action{Released} an open source \from[eslint-closure] to check the style
+\item \Action{Released} an open source \from[eslint-closure-library] to check the style
   of Google Closure JavaScript code.
 \item \Action{Split} a 4{\sc gb} monolithic binary into 3 microservices.
 \item \Action{Developed} a project management application that integrates with Gmail
@@ -158,6 +153,11 @@ B.S., Computer Science.
 \blank
 \Heading{Open Source Projects}
 
+\OpenSourceProject{\from[eslint-closure]}{
+  A heavily customized ESLint configuration and plugin for JavaScript following
+  the Google style guide.
+}
+
 \OpenSourceProject{\from[esup]}{
   Profiles the start-up time of a popular programming editor.  Over 110 stars on
   GitHub and 5,000 downloads.
@@ -171,7 +171,7 @@ B.S., Computer Science.
 }
 
 \Heading{Languages}
-\LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc SQL}, Bash, Lisp}
+\LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc SQL}, Bash, Emacs Lisp, \LaTeX}
 \LanguageProficiency{Familiar}{Rust, Go, TypeScript, Ada}
 
 \blank[1*line]
