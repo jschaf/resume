@@ -1,20 +1,12 @@
-LATEX_DIR := latex
-CONTEXT_DIR := context
-
+SOURCE_FILE := resume-latex.tex
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
-.PHONY: resume.pdf all clean
+.PHONY: resume-latex.pdf all clean
 
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
-all: context-resume
-
-latex-resume:
-	$(MAKE) -C $(LATEX_DIR) resume
-
-context-resume:
-	$(MAKE) -C $(LATEX_DIR) resume
+all: resume-latex.pdf
 
 # CUSTOM BUILD RULES
 
@@ -38,13 +30,12 @@ context-resume:
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-resume.pdf: resume.tex jschaf-resume.cls baselinegrid.sty
-	latexmk -pdflua -interaction=nonstopmode -time resume.tex
+resume-latex.pdf: resume-latex.tex sound-resume.cls baselinegrid.sty
+	latexmk -pdflua -interaction=nonstopmode -time $(SOURCE_FILE)
 
 watch:
-	make resume.pdf || true
-	when-changed mwe.tex type-*.tex -c "context -nonstopmode --silent='mkiv lua stats,fonts' mwe.tex; printf '=%.0s' {1..100}; printf '\n\n\n\n'"
-	when-changed resume.tex jschaf-resume.cls baselinegrid.sty -c make
+	make resume-latex.pdf || true
+	when-changed $(SOURCE_FILE) baselinegrid.sty sound-resume.cls  -c "make; zsh -c print-separator"
 
 clean:
 	latexmk -c
