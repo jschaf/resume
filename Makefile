@@ -34,6 +34,7 @@ resume.pdf: resume.tex jschaf-resume.cls baselinegrid.sty
 
 watch:
 	make resume.pdf || true
+	when-changed mwe.tex type-*.tex -c "context -nonstopmode --silent='mkiv lua stats,fonts' mwe.tex; printf '=%.0s' {1..100}; printf '\n\n\n\n'"
 	when-changed resume.tex jschaf-resume.cls baselinegrid.sty -c make
 
 clean:
