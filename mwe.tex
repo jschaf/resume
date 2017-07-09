@@ -14,18 +14,34 @@
 \SmallBaseline=0.806\Baseline
 \setupinterlinespace[line=\Baseline]
 
-\setupbodyfont[pagella,11pt]
-% \definefontfeature
-%   [default][default]
-%   [
-%     protrusion=quality,
-%     expansion=quality,
-%     onum=yes,
-%   ]
+\definefontfeature[default][default]
+                  [protrusion=quality, expansion=quality, onum=yes]
+\setupalign[hz,hanging]
 
-% \starttypescript[map][MinionPro]
-%   \loadmapfile[type-minionpro2.tex]
-% \stoptypescript
+
+\definefontalternative[se]
+\definefontalternative[liit]
+\definefontalternative[li]
+\definefontalternative[me]
+\definefontalternative[meit]
+\definefontalternative[seit]
+\definefontalternative[bl]
+\definefontalternative[blit]
+
+
+\usetypescript[type-adobe]
+\usetypescript[type-minionpro]
+\usetypescript[type-myriadpro]
+\starttypescript [myfont]
+   \definetypeface [myfont] [rm] [serif] [minionpro] [regular]
+   \definetypeface [myfont] [ss] [sans]  [myriadpro] [regular]
+   \definetypeface [myfont] [tt] [mono]  [cursor]    [default] [rscale=1.163]
+   \definetypeface [myfont] [mm] [math]  [palatino]  [default] [rscale=1.050]
+\stoptypescript
+\setupbodyfont[myfont,11pt]
+
+% Hyphenation
+\hyphenation{Goo-gle Type-Script Git-Hub}
 
 % Columns
 \define\GoldenRatio{0.61996}
@@ -37,30 +53,34 @@
 
 % Content
 \define[1]\Name{\blank[12pt]{\tfd #1}}
+\define[1]\Heading{\blank[0.6\Baseline]\color[HeadingColor]{\ssa #1}\par\blank[halfline]}
 \define\CompanyLength{2.7cm}
 \define[3]\WorkHeading{%
   \dontleavehmode\hbox to \CompanyLength{#1\hfil} #2 \hfill #3}
-\define[2]\EducationHeading{{\bf #1}\hfill #2\par}
+\define[2]\EducationHeading{{\se #1}\hfill #2\par}
 
 \define[2]\OpenSourceProject{%
   {\tf #1}\par%
   \startbaselinecorrection
   \setupinterlinespace[line=\SmallBaseline]
-  {\tfx #2}
+  \startalignment[flushleft] {\tfx #2} \stopalignment
   \stopbaselinecorrection
 }
 
 \define[1]\Contact{{\tfx #1\par}}
+\define[2]\LanguageProficiency{%
+  \startalignment[flushleft] \tfx {\se #1}:  #2 \stopalignment
+}
+\define[1]\Hobby{%
+  \startalignment[flushleft]{\tfx #1}\stopalignment}
 
 % Colors
 \definecolor[HeadingColor][0.6(red,black)]
 \definecolor[UrlColor][0.6(blue,black)]
 
-\define[1]\Heading{\blank[0.6\Baseline]\color[HeadingColor]{\tf \sansserif #1}\par}
-
 \setupitemize[each][packed,inmargin][symbol=nosymbol]
 \setupinteraction[state=start,color=UrlColor,style=\tf]
-\define[1]\Action{{\bf #1}}
+\define[1]\Action{{\se #1}}
 
 \useURL[author-email][mailto:joe.schafer@delta46.us][][joe.schafer@delta46.us]
 \useURL[author-linkedin][http://linkedin.com/in/jschaf][][linkedin.com/in/jschaf]
@@ -68,7 +88,7 @@
 \useURL[author-blog][http://blog.d46.us][][blog.d46.us]
 \useURL[eslint-closure][https://github.com/google/eslint-closure][][library]
 
-\useURL[esup][https://github.com/jschaf/esup][][Emacs StartUp Profiler]
+\useURL[esup][https://github.com/jschaf/esup][][Emacs Startup Profiler]
 \useURL[pylint][https://github.com/jschaf/pylint-flask][][Python Plugin for Flask]
 \useURL[pylint-debian][https://packages.debian.org/sid/main/python3-pylint-flask][][Debian]
 \useURL[pylint-downloads][http://pypi-ranking.info/module/pylint-flask][][10,000]
@@ -106,7 +126,6 @@
 \item \Action{Reduced} application testing time 20-fold by implementing hot-reload of JavaScript.
 \stopitemize
 
-
 \WorkHeading{U.S. Army}{Infantry Instructor}{2014-16}
 \startitemize
 \item \Action{Influenced} 5 levels of executives to transition the Infantry
@@ -139,7 +158,6 @@ B.S., Computer Science.
 \blank
 \Heading{Open Source Projects}
 
-\blank[0.5\Baseline]
 \OpenSourceProject{\from[esup]}{
   Profiles the start-up time of a popular programming editor.  Over 110 stars on
   GitHub and 5,000 downloads.
@@ -152,17 +170,14 @@ B.S., Computer Science.
   \from[pylint-downloads] downloads.
 }
 
-
 \Heading{Languages}
-{\bf Proficient}: Java, JavaScript, Python, SQL, Bash, Lisp
-
-{\bf Familiar}: Rust, Go, TypeScript, Ada
+\LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc SQL}, Bash, Lisp}
+\LanguageProficiency{Familiar}{Rust, Go, TypeScript, Ada}
 
 \blank[1*line]
 \Heading{Hobbies}
-Powerlifting: deadlift-425lb, squat-375lb, bench-260lb
-
-Exploring new programming languages like Rust, Dart, and TypeScript.
+\Hobby{Powerlifting. deadlift: 425lb, squat: 375lb, bench: 260lb}
+\Hobby{Exploring new programming languages like Rust, Dart, and TypeScript.}
 
 \stopGoldenColumns
 
