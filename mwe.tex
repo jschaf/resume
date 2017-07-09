@@ -1,22 +1,46 @@
 % Page Layout
 \setuppapersize[letter]
-\setuplayout[grid=yes,backspace=1in,margin=0in,rightedge=0in,rightmargin=0in,topspace=1in,header=0in,footer=0in]
+\setuplayout[grid=yes,width=6.5in]
 
 % Fonts
-\definefontfamily [mainface] [rm] [Minion Pro]
-\definefontfamily [headerface] [rm] [Myriad Pro]
-\setupbodyfont[mainface]
+
+% \definefontfamily [mainface] [rm] [Minion Pro]
+% \definefontfamily [headerface] [rm] [Myriad Pro]
+
+% \setupbodyfont[mainface]
 \setuphead[section][sectionnumber=no,number=no,style=\headerface]
 
+
+\starttypescript[map][MinionPro]
+  \loadmapfile[type-minionpro2.tex]
+\stoptypescript
+
 \define\GoldenRatio{0.61996}
+\newdimen\ColumnGutter
+\ColumnGutter=1cm
+% Hack to make column gutter centered on Golden ratio.
 \defineparagraphs[GoldenColumns][n=2]
-\setupparagraphs[GoldenColumns][1][width=\GoldenRatio\textwidth]
+\setupparagraphs[GoldenColumns][1][width=\dimexpr\GoldenRatio\textwidth - 0.5\ColumnGutter\relax]
+\setupparagraphs[GoldenColumns][2][distance=\ColumnGutter]
 
+% Content
+\define[1]\Name{{\tfd #1}}
+\define\CompanyLength{2.7cm}
 \define[3]\WorkHeading{%
-  \dontleavehmode\hbox to 2.7cm{#1} #2 \hfill #3}
+  \dontleavehmode\hbox to \CompanyLength{#1\hfil} {\slanted #2} \hfill #3}
 
-\setupitemize[symbol=nosymbol,inmargin]
-\setupinteraction[state=start,color=green]
+\define[2]\OpenSourceProject{{\tf #1}\par{\tfx #2}}
+
+\define[1]\Contact{#1\par}
+
+% Colors
+\definecolor[HeadingColor][0.6(red,black)]
+\definecolor[UrlColor][0.6(blue,black)]
+
+\define[1]\Heading{\color[HeadingColor]{\tf \sansserif #1}\par}
+
+\setupitemize[each][packed,inmargin][symbol=nosymbol]
+\setupinteraction[state=start,color=UrlColor]
 \define[1]\Action{{\bf #1}}
 
 \useURL[author-email][mailto:joe.schafer@delta46.us][][joe.schafer@delta46.us]
@@ -25,16 +49,29 @@
 \useURL[author-blog][http://blog.d46.us][][blog.d46.us]
 \useURL[eslint-closure][https://github.com/google/eslint-closure][][library]
 
+\useURL[esup][https://github.com/jschaf/esup][][Emacs StartUp Profiler]
+\useURL[pylint][https://github.com/jschaf/pylint-flask][][Python Plugin for Flask]
+\useURL[pylint-debian][https://packages.debian.org/sid/main/python3-pylint-flask][][Debian]
+\useURL[pylint-downloads][http://pypi-ranking.info/module/pylint-flask][][10,000]
+
 \showgrid
 \showframe
 
 \starttext
+
 \startGoldenColumns
-Joe Schafer
+\Name{Joe Schafer}
+\GoldenColumns
+\Contact{\from[author-email]}
+\Contact{\from[author-linkedin]}
+\Contact{\from[author-github]}
+\Contact{\from[author-blog]}
+\stopGoldenColumns
 
-\blank[3*line]
 
-\startsection[title={Work Experience}]
+\startGoldenColumns
+
+\Heading{Work Experience}
 
 \WorkHeading{Google}{Software Engineer}{2016-present}
 \startitemize
@@ -65,21 +102,33 @@ Joe Schafer
   through 6 enemy ambushes and Improvised Explosive Device (IED) attacks.
 \stopitemize
 
-\stopsection
+\Heading{Education}
 
 \GoldenColumns
-\from[author-email]
+\Heading{Open Source Projects}
 
-\from[author-linkedin]
+\OpenSourceProject{\from[esup]}{
+  Profiles the start-up time of a popular
+  programming editor.  Over 110 stars on GitHub and 5,000 downloads.
+}
 
-\from[author-github]
+\OpenSourceProject{\from[pylint]}{
+  A plugin for Pylint, a static analysis tool, to integrate with the web
+  framework Flask.  Packaged by \from[pylint-debian].  Over
+  \from[pylint-downloads] downloads.
+}
 
-\from[author-blog]
 
-\blank[2*line]
-Rockets
+\Heading{Languages}
+{\bf Proficient}: Java, JavaScript, Python, SQL, Bash, Lisp
 
-Praesent augue. Nam vestibulum accumsan nisl.  Donec at pede.Praesent fermentum
-tempor tellus.
+{\bf Familiar}: Rust, Go, TypeScript, Ada
+
+\Heading{Hobbies}
+Powerlifting: deadlift-425lb, squat-375lb, bench-260lb
+
+Exploring new programming languages like Rust, Dart, and TypeScript.
+
 \stopGoldenColumns
+
 \stoptext
