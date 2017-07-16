@@ -1,8 +1,10 @@
 % Page Layout
 \setuppapersize[letter]
 \setuplayout[grid=yes,
-  backspace=0.75in,
-  width=7in,
+  backspace=0.6in,
+  width=7.3in,
+  topspace=0.5in,
+  height=10in,
   header=0pt]
 
 % Baseline Grid
@@ -53,11 +55,18 @@
 
 % Columns
 \define\GoldenRatio{0.61996}
+\define\HalfGoldenRatio{0.30998}
 \newdimen\ColumnGutter
 \ColumnGutter=1cm
 \defineparagraphs[GoldenColumns][n=2]
 \setupparagraphs[GoldenColumns][1][width=\dimexpr\GoldenRatio\textwidth - 0.5\ColumnGutter\relax]
 \setupparagraphs[GoldenColumns][2][distance=\ColumnGutter]
+
+
+\defineparagraphs[GoldenColumnsThree][n=3]
+\setupparagraphs[GoldenColumnsThree][1][width=\dimexpr\HalfGoldenRatio\textwidth\relax]
+\setupparagraphs[GoldenColumnsThree][2][width=\dimexpr\HalfGoldenRatio\textwidth - 0.5\ColumnGutter\relax, distance=0pt]
+\setupparagraphs[GoldenColumnsThree][3][distance=\ColumnGutter]
 
 % Content
 \define[1]\Name{\blank[12pt]{\tfe #1}}
@@ -109,16 +118,18 @@
 % Begin Document
 \starttext
 
-\startGoldenColumns
-\vskip 0.55\Baseline
+\startGoldenColumnsThree
 \Name{Joe Schafer}
-\GoldenColumns
-\Contact{San Francisco Bay Area}
-\Contact{\from[author-email]}
+
+\GoldenColumnsThree
+\hfill\Contact{San Francisco Bay Area}
+\hfill\Contact{\from[author-email]}
+
+\GoldenColumnsThree
 \Contact{\from[author-linkedin]}
 \Contact{\from[author-github]}
 \Contact{\from[author-blog]}
-\stopGoldenColumns
+\stopGoldenColumnsThree
 
 \vskip\Baseline
 
@@ -128,12 +139,14 @@
 
 \WorkHeading{Google}{Software Engineer}{2016-present}
 \startitemize
-\item \Action{Released} an open source \from[eslint-closure-library] to check the style
-  of Google Closure JavaScript code.
-\item \Action{Split} a 4GB monolithic binary into 3 microservices.
-\item \Action{Developed} a project management application that integrates with Gmail
-  through JavaScript, Python and Java.
-\item \Action{Reduced} application testing time 20-fold by implementing hot-reload of JavaScript.
+\item \Action{Released} an open source \from[eslint-closure-library] to check
+  the style of Google Closure JavaScript code.
+\item \Action{Improved} project build greenness from 72\% to 97\% by
+  splitting a 4{\sc gb} monolithic binary into 3 microservices.
+\item \Action{Developed} a project management application that integrates with
+  Gmail through JavaScript, Python and Java.
+\item \Action{Reduced} application testing time 20-fold by implementing
+  hot-reload of JavaScript.
 \stopitemize
 
 \WorkHeading{U.S. Army}{Infantry Instructor}{2014-16}
@@ -141,15 +154,20 @@
 \item \Action{Influenced} 5 levels of executives to transition the Infantry
   training course to a committee design resulting in every subsequent class
   achieving record high performance.
-\item \Action{Taught} and \Action{mentored} 120 Infantry lieutenants to lead a
-  platoon in battle and plan decisive operations.
+\item \Action{Developed} a 40-hour course to teach the operations process to all Infantry lieutenants, standardizing the format across the Army.
+\item \Action{Trained} 120 Infantry lieutenants to lead a platoon in battle and
+  plan decisive operations.
 \stopitemize
 
 \WorkHeading{U.S. Army}{Infantry Officer}{2010-14}
 \startitemize
-\item \Action{Rated} \#1 of 5 peers. Chosen to plan all logistics operations for an 815-man Airborne Infantry Battalion.
+\item \Action{Rated} \#1 of 5 peers. \Action{Selected} to plan all logistics
+  operations for an 815-man Airborne Infantry Battalion.
+\item \Action{Planned} and \Action{directed} shipping and accountability of 100
+  vehicles and 30 containers over 1000 miles on time with no theft or loss of
+  property.
 \item \Action{Planned} and \Action{led} 25 combat missions in Afghanistan
-  through 6 enemy ambushes and Improvised Explosive Device (IED) attacks.
+  through multiple enemy attacks bringing all 19 Soldiers home safely.
 \stopitemize
 
 \vskip \Baseline
@@ -190,6 +208,9 @@ B.S., Computer Science.
 \LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc SQL}, Bash, Emacs Lisp, \LaTeX}
 \LanguageProficiency{Familiar}{Rust, Go, TypeScript, Ada}
 
+\vskip \Baseline
+\Heading{Military Education}
+Ranger School, Jumpmaster School, Maneuver Captain's Career Course
 % Not sure if these are a value add.
 % \vskip 1.5\Baseline
 % \Heading{Hobbies}
