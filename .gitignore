@@ -8,3 +8,4 @@
 /context-resume.tuc
 *.tuc
 output/
+/.DS_Store

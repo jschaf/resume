@@ -5,7 +5,7 @@ all: resume
 resume: resume-context.pdf
 
 resume-context.pdf: resume-context.tex type-minionpro.tex type-myriadpro.tex
-	context -interaction=nonstopmode --silent='mkiv lua stats,fonts' $(SOURCE_FILE)
+	context -nonstopmode --silent='mkiv lua stats,fonts' $(SOURCE_FILE)
 
 watch:
 	make resume-context.pdf || true
