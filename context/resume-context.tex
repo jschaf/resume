@@ -1,6 +1,9 @@
 % Page Layout
 \setuppapersize[letter]
-\setuplayout[grid=yes,width=6.5in,header=0pt]
+\setuplayout[grid=yes,
+  backspace=0.75in,
+  width=7in,
+  header=0pt]
 
 % Baseline Grid
 % default line=2.8ex
@@ -105,6 +108,7 @@
 
 % Begin Document
 \starttext
+
 \startGoldenColumns
 \vskip 0.55\Baseline
 \Name{Joe Schafer}
@@ -116,6 +120,7 @@
 \Contact{\from[author-blog]}
 \stopGoldenColumns
 
+\vskip\Baseline
 
 \startGoldenColumns
 
@@ -185,10 +190,11 @@ B.S., Computer Science.
 \LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc SQL}, Bash, Emacs Lisp, \LaTeX}
 \LanguageProficiency{Familiar}{Rust, Go, TypeScript, Ada}
 
-\vskip 1.5\Baseline
-\Heading{Hobbies}
-\Hobby{Powerlifting}
-\blank[line]
-\Hobby{Exploring new programming languages like Rust, Dart, and TypeScript.}
+% Not sure if these are a value add.
+% \vskip 1.5\Baseline
+% \Heading{Hobbies}
+% \Hobby{Powerlifting}
+% \blank[line]
+% \Hobby{Exploring new programming languages like Rust, Dart, and TypeScript.}
 
 \stopGoldenColumns
