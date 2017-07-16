@@ -16,12 +16,16 @@
 \setupinterlinespace[line=\Baseline]
 
 % Fonts
+% TODO: this doesn't have any effect
 \definefontfeature[default][default]
                   [protrusion=quality, expansion=quality, onum=yes]
+
+\def\sc{\setfontfeature{smallcaps}}
+\def\orn{\setfontfeature{ornaments}}
+
 \definefontsize[e]
 \definebodyfontenvironment[default][e=3]
 
-\setupalign[hz,hanging]
 \definefontalternative[se]
 \definefontalternative[liit]
 \definefontalternative[li]
@@ -40,6 +44,8 @@
    \definetypeface [myfont] [tt] [mono]  [cursor]    [default] [rscale=1.163]
    \definetypeface [myfont] [mm] [math]  [palatino]  [default] [rscale=1.050]
 \stoptypescript
+
+\setupalign[hz,hanging]
 \setupbodyfont[myfont,11pt]
 
 \definebar[LightUnderline][rulethickness=0.1,offset=-0.2,continue=yes]
@@ -61,7 +67,6 @@
 \defineparagraphs[GoldenColumns][n=2]
 \setupparagraphs[GoldenColumns][1][width=\dimexpr\GoldenRatio\textwidth - 0.5\ColumnGutter\relax]
 \setupparagraphs[GoldenColumns][2][distance=\ColumnGutter]
-
 
 \defineparagraphs[GoldenColumnsThree][n=3]
 \setupparagraphs[GoldenColumnsThree][1][width=\dimexpr\HalfGoldenRatio\textwidth\relax]
@@ -91,6 +96,8 @@
   \startalignment[flushleft] {\se #1}:  #2 \stopalignment
 }
 \define[1]\Hobby{
+  \startalignment[flushleft] #1\stopalignment}
+\define[1]\MilitaryEducation{
   \startalignment[flushleft] #1\stopalignment}
 
 % Colors
@@ -141,7 +148,7 @@
 \startitemize
 \item \Action{Released} an open source \from[eslint-closure-library] to check
   the style of Google Closure JavaScript code.
-\item \Action{Improved} project build greenness from 72\% to 97\% by
+\item \Action{Improved} project build success from 72\% to 97\% by
   splitting a 4{\sc gb} monolithic binary into 3 microservices.
 \item \Action{Developed} a project management application that integrates with
   Gmail through JavaScript, Python and Java.
@@ -155,8 +162,6 @@
   training course to a committee design resulting in every subsequent class
   achieving record high performance.
 \item \Action{Developed} a 40-hour course to teach the operations process to all Infantry lieutenants, standardizing the format across the Army.
-\item \Action{Trained} 120 Infantry lieutenants to lead a platoon in battle and
-  plan decisive operations.
 \stopitemize
 
 \WorkHeading{U.S. Army}{Infantry Officer}{2010-14}
@@ -205,12 +210,13 @@ B.S., Computer Science.
 
 \vskip 0.5\Baseline
 \Heading{Languages}
-\LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc SQL}, Bash, Emacs Lisp, \LaTeX}
+\LanguageProficiency{Proficient}{Java, JavaScript, Python, {\sc sql}, Bash, Emacs Lisp, \LaTeX}
 \LanguageProficiency{Familiar}{Rust, Go, TypeScript, Ada}
 
-\vskip \Baseline
+\vskip 1.5\Baseline
 \Heading{Military Education}
-Ranger School, Jumpmaster School, Maneuver Captain's Career Course
+\MilitaryEducation{Ranger School, Jumpmaster, Maneuver Captain's Career Course,
+  Airborne, Air Assault.}
 % Not sure if these are a value add.
 % \vskip 1.5\Baseline
 % \Heading{Hobbies}
